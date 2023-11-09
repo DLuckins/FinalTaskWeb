@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<link rel="stylesheet" href="site.css">
+
+
+<div class="navbar">
+    <div class="Logo">
+        <h1>Recipes</h1>
+        <img src="label.png" alt="Your Logo">
+    </div>
+
+    <div class="create">
+        <a href="/add">Create a new recipe</a>
+    </div>
+
+    <div class="search">
+        <form id="search-form" method="GET">
+            <button type="submit">Find</button>
+            <input type="text" id="search-input" placeholder="Search here!" name="q">
+        </form>
+    </div>
+
+    <div id="search-results">
+        <!-- Display search results here -->
+    </div>
+
+    <!--<div class="logo">
+        <img src="lable.png" alt="Your Logo">
+    </div>-->
+
+</div>
+
+<div class="main">
+    <div>
+        <div th:each="recipe : ${found}">
+            <button type="button" class="collapsible"><span th:text="${recipe.name}"> Name </span><img class="recimg" th:src="@{${recipe.imgLink}}"></button>
+            <div class="content">
+                <span style="white-space: pre-line" th:text="${recipe.desc}"> Desc</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+    </script>
+<style>
+.recimg{
+    float:right;
+    width: 50px;
+    height: 50px;
+}
+    .main {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 80px;
+    text-align: center;
+}
+.collapsible {
+  align-items: center;
+  background-color: #DEB887;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  text-align: center;
+  font-family: Arial;
+  font-size: 25px;
+}
+.active, .collapsible:hover {
+  background-color:#FFDEAD;;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+</style>
+</body>
+</html>

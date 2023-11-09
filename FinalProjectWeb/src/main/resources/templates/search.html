@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<link rel="stylesheet" href="site.css">
+<div class="navbar">
+    <form method="get"  >
+        <input type="search" name="keyword"/>
+        <input type="submit" value="Search">
+    </form>
+
+    <div class="create">
+        <a href="/add">Create a new recipe</a>
+    </div>
+
+    <div class="search">
+        <form id="search-form" method="GET">
+            <button type="submit">Find</button>
+            <input type="text" id="search-input" placeholder="Search here!" name="q">
+        </form>
+    </div>
+<form method="get">
+  <input type="search" name="keyword"/>
+  <input type="submit" value="Search">
+</form>
+<div>
+    <div th:each="recipe : ${found}">
+        <button type="button" class="collapsible"><span th:text="${recipe.name}"> Name </span></button>
+        <div class="content">
+            <p th:text="${recipe.desc}"> Desc</p>
+        </div>
+    </div>
+</div>
+<script>
+        var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+    </script>
+<style>
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+    </style>
+</body>
+</html>

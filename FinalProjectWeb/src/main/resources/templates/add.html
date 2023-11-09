@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<link rel="stylesheet" href="site.css">
+<div class="navbar">
+    <div class="Logo">
+        <h1>Recipes</h1>
+        <img src="label.png" alt="Your Logo">
+    </div>
+    <div class="create">
+        <a href="http://localhost:8080/">Back</a>
+    </div>
+    <div class="search">
+        <form id ="search-form" method="post" th:object="${recipe}" th:method="POST" >
+            <label>Recipe Name:</label>
+            <input type="text" th:field="*{name}" name="name" class="search-input"/>
+            <label>Recipe:</label>
+            <textarea form="search-form" th:field="*{desc}" name="desc" class="search-input"></textarea>
+            <label>Recipe Image link:</label>
+            <input type="text" th:field="*{imgLink}" name="imgLink" class="search-input"/>
+            <!--<input type="text" th:field="*{desc}" name="desc" class="search-input"/>-->
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
